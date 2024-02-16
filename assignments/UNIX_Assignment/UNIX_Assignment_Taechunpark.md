@@ -1,4 +1,7 @@
 # Unix Assignment
+
+* Tae-Chun Park
+
 ## Data Inspection
 ### Attributes of fang_el_al_genotypes
 
