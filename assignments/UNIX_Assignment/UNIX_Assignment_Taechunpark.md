@@ -43,9 +43,13 @@ sort -k1,1 snp_position.txt > sorted_snp_position.txt
 join -1 1 -2 1 sorted_transposed_fang.txt sorted_snp_position.txt > joined_file.txt
 ```
 
-2-4. Extract maize data from the joining file. Using grep to search SNP_ID for maize, and  chromosome1 with increasing order values and with missing data encoded by "?" symbol
+2-4. Extract data from the joining file.
+The idea is that Using grep to search SNP_ID for maize and teosinte, respectively, and grep for searching chromosome01 with increasing order values and with missing data encoded by "?" symbol
 ```
 grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep -E "1" | sort -k3,3 | sed 's/\?\/\?/?/g' joined_file.txt > maize_genotypes_chr01_Q.txt
+```
+```
+grep -E "(SNP_ID|ZMPBA|ZMPIL|ZMPJA)" joined_file.txt | grep -E "1" | sort -k3,3 | sed 's/\?\/\?/?/g' joined_file.txt > teosinte_genotypes_chr01_Q.txt
 ```
 * The file successively created, and then change the code to extact other chromosome such as grep -E "2", grep -E "3", and so on.
 
@@ -53,20 +57,25 @@ grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep -E "1" | sort -k3,3 |
 2-5. Do the same way as 2-4, but need some changes for decreasing SNP order and "-" symbol
 ```
 grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep -E "1" | sort -k3,3 -r | sed 's/-?/-/g' | sed 's/?/-/g' joined_file.txt > maize_genotypes_chr01_D.txt
+```
+```
+grep -E "(SNP_ID|ZMPBA|ZMPIL|ZMPJA)" joined_file.txt | grep -E "1" | sort -k3,3 -r | sed 's/-?/-/g' | sed 's/?/-/g' joined_file.txt > teosinte_genotypes_chr01_D.txt
 ``` 
 * Repeat the command above to get chromsome 2 ~ 10
 
 2-6. 1 file with all SNPs with unknown positions in the genome for maize and teosinte
 ```
 grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep "unknown" joined_file.txt > maize_unknown_snps.txt
-
+```
+```
 grep -E "(SNP_ID|ZMPBA|ZMPIL|ZMPJA)" joined_file.txt | grep "unknown" joined_file.txt > teosinte_unknown_snps.txt
-
 ```
 
 2-7. 1 file with all SNPs with multiple positions in the genome for maize and teosinte
 ```
 grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep "unknown" joined_file.txt > maize_multiple_snps.txt
+```
+```
 grep -E "(SNP_ID|ZMPBA|ZMPIL|ZMPJA)" joined_file.txt | grep "unknown" joined_file.txt > teosinte_multiple_snps.txt
 ```
 
