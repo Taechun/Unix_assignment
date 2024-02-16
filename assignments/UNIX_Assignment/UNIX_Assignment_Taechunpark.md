@@ -36,15 +36,21 @@ awk -f transpose.awk fang_et_al_genotypes.txt > transposed_genotypes.txt
 ```
 sort -k1,1 transposed_genotypes.txt > sorted_transposed_fang.txt
 sort -k1,1 snp_position.txt > sorted_snp_position.txt
+```
 
 2-3. Join
 ```
 join -1 1 -2 1 sorted_transposed_fang.txt sorted_snp_position.txt > joined_file.txt
 ```
 
-2-4. Extract maize and teosinte data from the joining file, respectively. After that, using grep to find chromosome1 data with increasing order values and with missing data encoded by "?" symbol
+2-4. Extract maize data from the joining file. Using grep to search SNP_ID for maize, and  chromosome1 with increasing order values and with missing data encoded by "?" symbol
 ```
 grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep -E "1" | sort -k3,3 | sed 's/\?\/\?/?/g' joined_file.txt > maize_genotypes_chr01_Q.txt
 ```
-* the file successively created and change the code to extact other chromosome such as grep -E "2", grep -E "3", and so on.
+* The file successively created, and then change the code to extact other chromosome such as grep -E "2", grep -E "3", and so on.
 
+2-5. Do the same way as 2-4, but need some changes for decreasing SNP order and "-" symbol
+```
+grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep -E "1" | sort -k3,3 -r | sed 's/-?/-/g' | sed 's/?/-/g' joined_file.txt > maize_genotypes_chr01_D.txt
+``` 
+* Repeat the command above to get chromsome 2 ~ 10
