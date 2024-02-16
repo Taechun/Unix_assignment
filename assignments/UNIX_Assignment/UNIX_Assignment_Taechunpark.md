@@ -5,6 +5,8 @@
 1-1. Check the file how it looks like
 ```
 cat fang_el_al_genotypes.txt
+```
+```
 cat snp_position.txt
 ```
 * The files look so big.
@@ -12,6 +14,8 @@ cat snp_position.txt
 1-2. Using head command to see the first several rows
 ```
 head -n 3 fang_el_al_genotypes.txt
+```
+```
 head -n 3 snp_position.txt
 ```
 * fang_el_al_genotypes.txt looks it has genotypic information in it.
@@ -35,6 +39,8 @@ awk -f transpose.awk fang_et_al_genotypes.txt > transposed_genotypes.txt
 2-2. Before joining the files, sorting the data files
 ```
 sort -k1,1 transposed_genotypes.txt > sorted_transposed_fang.txt
+```
+```
 sort -k1,1 snp_position.txt > sorted_snp_position.txt
 ```
 
