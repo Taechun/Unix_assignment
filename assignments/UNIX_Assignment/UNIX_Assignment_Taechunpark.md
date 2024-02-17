@@ -70,9 +70,16 @@ grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep -E "1" | sort -k3,3 -
 ```
 grep -E "(SNP_ID|ZMPBA|ZMPIL|ZMPJA)" joined_file.txt | grep -E "1" | sort -k3,3 -r | sed 's/-?/-/g' | sed 's/?/-/g' joined_file.txt > teosinte_genotypes_chr01_D.txt
 ``` 
-* Repeat the command above to get chromsome 2 ~ 10
 
-2-6. 1 file with all SNPs with unknown positions in the genome for maize and teosinte
+2-6. It is difficult to do change chromosome numbers manually.
+```
+for i in {1..10}; do awk grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep -E "$i" | sort -k3,3 -r | sed 's/-?/-/g' | sed 's/?/-/g' > maize_genotypes_chr0${i}_D.txt; done
+```
+```
+for i in {1..10}; do awk grep -E "(SNP_ID|ZMPBA|ZMPIL|ZMPJA)" joined_file.txt | grep -E "$i" | sort -k3,3 -r | sed 's/-?/-/g' | sed 's/?/-/g' > maize_genotypes_chr0${i}_D.txt; done
+```
+
+2-7. 1 file with all SNPs with unknown positions in the genome for maize and teosinte
 ```
 grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep "unknown" joined_file.txt > maize_unknown_snps.txt
 ```
@@ -80,7 +87,7 @@ grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep "unknown" joined_file
 grep -E "(SNP_ID|ZMPBA|ZMPIL|ZMPJA)" joined_file.txt | grep "unknown" joined_file.txt > teosinte_unknown_snps.txt
 ```
 
-2-7. 1 file with all SNPs with multiple positions in the genome for maize and teosinte
+2-8. 1 file with all SNPs with multiple positions in the genome for maize and teosinte
 ```
 grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep "unknown" joined_file.txt > maize_multiple_snps.txt
 ```
@@ -88,6 +95,6 @@ grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep "unknown" joined_file
 grep -E "(SNP_ID|ZMPBA|ZMPIL|ZMPJA)" joined_file.txt | grep "unknown" joined_file.txt > teosinte_multiple_snps.txt
 ```
 
-2-8 Check the files and move to the new directory ("results").
+2-9 Check the files and move to the new directory ("results").
 
 
