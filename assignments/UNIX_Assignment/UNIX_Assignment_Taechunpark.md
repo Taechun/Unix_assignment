@@ -88,6 +88,6 @@ grep -E "(SNP_ID|ZMMILZMMLR|ZMMMR)" joined_file.txt | grep "unknown" joined_file
 grep -E "(SNP_ID|ZMPBA|ZMPIL|ZMPJA)" joined_file.txt | grep "unknown" joined_file.txt > teosinte_multiple_snps.txt
 ```
 
-2-8 Check the files and move to the new directory ("results")
+2-8 Check the files and move to the new directory ("results").
 
 
